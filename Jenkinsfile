@@ -22,7 +22,7 @@ pipeline {
     }
     stage('Push images to aws ecr'){
               steps {
-                withDockerRegistry(credentialsId: 'ecr:ap-south-1:aws-creds', url: 'http://263970263787.dkr.ecr.ap-south-1.amazonaws.com/inventory-mgmt-service') {
+                withDockerRegistry(credentialsId: 'ecr:ap-south-1:awsauth', url: 'http://263970263787.dkr.ecr.ap-south-1.amazonaws.com/inventory-mgmt-service') {
                  sh 'docker tag inventory-mgmt-service:latest 263970263787.dkr.ecr.ap-south-1.amazonaws.com/inventory-mgmt-service'
                  sh 'docker push 263970263787.dkr.ecr.ap-south-1.amazonaws.com/inventory-mgmt-service'
 
