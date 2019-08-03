@@ -1,5 +1,11 @@
 pipeline {
   agent any
+  
+  tools {
+    jdk 'JAVA_HOME'
+    maven 'MAVEN_HOME'
+  }
+  
   stages {
     stage('Clone repository') {
         /* Let's make sure we have the repository cloned to our workspace... */
@@ -16,12 +22,12 @@ pipeline {
     }
     stage('Push images to aws ecr'){
               steps {
-                withDockerRegistry(credentialsId: 'ecr:ap-south-1:aws-creds', url: 'http://118463809662.dkr.ecr.ap-south-1.amazonaws.com/inventory-mgmt-service') {
-                 sh 'docker tag inventory-mgmt-service:latest 118463809662.dkr.ecr.ap-south-1.amazonaws.com/inventory-mgmt-service'
-                 sh 'docker push 118463809662.dkr.ecr.ap-south-1.amazonaws.com/inventory-mgmt-service'
+                withDockerRegistry(credentialsId: 'ecr:ap-south-1:aws-creds', url: 'http://263970263787.dkr.ecr.ap-south-1.amazonaws.com/inventory-mgmt-service') {
+                 sh 'docker tag inventory-mgmt-service:latest 263970263787.dkr.ecr.ap-south-1.amazonaws.com/inventory-mgmt-service'
+                 sh 'docker push 263970263787.dkr.ecr.ap-south-1.amazonaws.com/inventory-mgmt-service'
 
-                 sh 'docker tag inventory-management-items:latest 118463809662.dkr.ecr.ap-south-1.amazonaws.com/inventory-management-items'
-                 sh 'docker push 118463809662.dkr.ecr.ap-south-1.amazonaws.com/inventory-management-items'
+                 sh 'docker tag inventory-management-items:latest 263970263787.dkr.ecr.ap-south-1.amazonaws.com/inventory-management-items'
+                 sh 'docker push 263970263787.dkr.ecr.ap-south-1.amazonaws.com/inventory-management-items'
             }
               }
     }
